@@ -1,0 +1,104 @@
+﻿@using FashionStore.Data
+@using MySql.Data.MySqlClient
+@inject NavigationManager navigationManager
+@page "/brand"
+
+<PageTitle>Brand List</PageTitle>
+<h3>Brand Table</h3>
+
+<Button Type="ButtonType.Link" Color="ButtonColor.Warning" Outline="true" To="brand/create" Class="mb-3"> ADD </Button>
+
+<Grid TItem="Brand"
+      Class="table table-hover table-bordered table-striped"
+      DataProvider="BrandDataProvider"
+      AllowFiltering="true"
+      AllowPaging="true"
+      PageSize="5"
+      AllowSorting="true"
+      AllowSelection="true"
+      Responsive="true">
+
+    <GridColumn TItem="Brand" HeaderText="Id" PropertyName="Id" SortKeySelector="item => item.Id">
+        @context.Id
+    </GridColumn>
+    <GridColumn TItem="Brand" HeaderText="Category Name" PropertyName="Name" SortKeySelector="item => item.Name">
+        @context.Name
+    </GridColumn>
+    <GridColumn TItem="Brand" HeaderText="Status" PropertyName="Designation" SortKeySelector="item => item.IsDeleted">
+        @if (context.IsDeleted == 1)
+        {
+            <Badge Color="BadgeColor.Danger" IndicatorType="BadgeIndicatorType.None">Deleted</Badge>
+        }
+        else
+        {
+            <Badge Color="BadgeColor.Success" IndicatorType="BadgeIndicatorType.None">Active</Badge>
+        }
+    </GridColumn>
+
+    <GridColumn TItem="Brand" HeaderText="Action">
+        <Button Type="ButtonType.Link" Color="ButtonColor.Info" Outline="true" To=@($"brand/edit/{@context.Id}")> Edit </Button>
+        <Button Type="ButtonType.Link" Color="ButtonColor.Danger" Outline="true" @onclick="(e) => DeleteBrand(context.Id)" Disabled="(context.IsDeleted == 1)"> Delete </Button>
+
+    </GridColumn>
+
+</Grid>
+
+@code {
+    private List<Brand> brands;
+    private async Task<GridDataProviderResult<Brand>> BrandDataProvider(GridDataProviderRequest<Brand> request)
+    {
+        if (brands is null)
+            brands = GetBrand();
+
+        return await Task.FromResult(request.ApplyTo(brands));
+    }
+
+    private List<Brand> GetBrand()
+    {
+        List<Brand> list = new List<Brand>();
+        try
+        {
+            string sqlSelect = "SELECT * FROM brand ORDER BY brand_id DESC";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlSelect;
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Brand brand = new Brand();
+                brand.Id = reader.GetInt32("brand_id");
+                brand.Name = reader.GetString("brand_name");
+                brand.IsDeleted = reader.GetInt32("is_deleted");
+                list.Add(brand);
+            }
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        return list;
+    }
+
+    private void DeleteBrand(int id)
+    {
+        try
+        {
+            string sqlDelete = $"UPDATE brand SET is_deleted = 1 WHERE brand_id = {id}";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlDelete;
+            cmd.ExecuteNonQuery();
+            navigationManager.NavigateTo("brand", forceLoad: true);
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+}

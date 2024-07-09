@@ -1,0 +1,220 @@
+﻿@using FashionStore.Data
+@using MySql.Data.MySqlClient
+@inject NavigationManager navigationManager
+@page "/clother"
+
+
+
+<PageTitle>Clother List</PageTitle>
+<h3>Clother Table</h3>
+
+
+<div class="row">
+    <div class="mb-3 col-md-12">
+        <Button Type="ButtonType.Link" Color="ButtonColor.Warning" Outline="true" To="/clother/create" Class="float-end"> ADD </Button>
+    </div>
+
+    <div class="col-md-12">
+        <Grid TItem="Clother"
+              Class="table table-hover table-bordered table-striped"
+              DataProvider="ClotherDataProvider"
+              AllowFiltering="true"
+              AllowPaging="true"
+              PageSize="5"
+              AllowSorting="true"
+              AllowSelection="true"
+              Responsive="true">
+
+            <GridColumn TItem="Clother" HeaderText="Id" PropertyName="Id" SortKeySelector="item => item.Id">
+                @context.Id
+            </GridColumn>
+            <GridColumn TItem="Clother" HeaderText="Name" PropertyName="Name" SortKeySelector="item => item.Name">
+                @context.Name
+            </GridColumn>
+            <GridColumn TItem="Clother" HeaderText="Image" PropertyName="Image" SortKeySelector="item => item.Image">
+                <img src="@context.Image" width="90px">
+            </GridColumn>
+            <GridColumn TItem="Clother" HeaderText="Quantity" PropertyName="Quantity" SortKeySelector="item => item.Quantity">
+                @context.Quantity
+            </GridColumn>
+            <GridColumn TItem="Clother" HeaderText="Price" PropertyName="Price" SortKeySelector="item => item.Price">
+               $@context.Price
+            </GridColumn>
+            <GridColumn TItem="Clother" HeaderText="Category" PropertyName="Category" SortKeySelector="item => item.BrandName">
+                @context.BrandName
+            </GridColumn>
+            <GridColumn TItem="Clother" HeaderText="Status" PropertyName="Status" SortKeySelector="item => item.IsDeleted">
+                @if (context.IsDeleted == 1)
+                {
+                    <Badge Color="BadgeColor.Danger" IndicatorType="BadgeIndicatorType.None">Deleted</Badge>
+                }
+                else
+                {
+                    <Badge Color="BadgeColor.Success" IndicatorType="BadgeIndicatorType.None">Active</Badge>
+                }
+            </GridColumn>
+
+            <GridColumn TItem="Clother" HeaderText="Action">
+                <Button Type="ButtonType.Link" Color="ButtonColor.Info" Outline="true" To=@($"clother/edit/{@context.Id}")> Edit </Button>
+                <Button Type="ButtonType.Link" Color="ButtonColor.Danger" Outline="true" @onclick="(Id) => DeleteClother(context.Id)" Disabled="(context.IsDeleted == 1)"> Delete </Button>
+                <Button Type="ButtonType.Link" Color="ButtonColor.Success" Outline="true" @onclick="(Id) => AddToCart(context.Id)" Disabled="(context.IsDeleted == 1)"> Add To Cart </Button>
+            </GridColumn>
+        </Grid>
+    </div>
+</div>
+
+
+
+
+@code {
+    private List<Clother> clothers;
+
+    protected override void OnInitialized()
+    {
+        clothers = GetClother();
+    }
+
+    private async Task<GridDataProviderResult<Clother>> ClotherDataProvider(GridDataProviderRequest<Clother> request)
+    {
+        if (clothers is null)
+            clothers = GetClother();
+
+        return await Task.FromResult(request.ApplyTo(clothers));
+    }
+
+    public List<Clother> GetClother()
+    {
+        List<Clother> list = new List<Clother>();
+        string sqlSelect = @"
+                            SELECT clother.*, brand.brand_name
+                            FROM clother
+                            JOIN brand
+                            ON clother.brand_id = brand.brand_id
+                            ORDER BY clother.id DESC";
+
+        try
+        {
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlSelect;
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Clother clother = new Clother();
+                clother.Id = reader.GetInt32("id");
+                clother.Name = reader.GetString("name");
+                clother.Image = reader.GetString("image");
+                clother.Price = reader.GetDouble("price");
+                clother.Quantity = reader.GetInt32("quantity");
+                clother.BrandName = reader.GetString("brand_name");
+                clother.IsDeleted = reader.GetInt32("is_deleted");
+                list.Add(clother);
+            }
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        return list;
+    }
+
+    public void DeleteClother(int id)
+    {
+        try
+        {
+            string sqlUpdate = $"UPDATE clother SET is_deleted = 1 WHERE id = {id}";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlUpdate;
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            navigationManager.NavigateTo("clother", forceLoad: true);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    public void AddToCart(int id)
+    {
+        string sqlSelectClother = "SELECT * FROM clother WHERE id = @id";
+        string sqlSelectCart = "SELECT * FROM cart WHERE clother_id = @clother_id";
+        string sqlInsert = "INSERT INTO cart (clother_name, clother_image, price, clother_id) VALUES (@name, @image, @price, @clother_id)";
+        string sqlUpdate = "UPDATE cart SET amount = amount + 1 WHERE clother_id = @clother_id";
+
+        try
+        {
+            using (var conn = ConnectDB.ConnectionMySql())
+            {
+                conn.Open();
+
+     
+                using (var selectCartCmd = conn.CreateCommand())
+                {
+                    selectCartCmd.CommandText = sqlSelectCart;
+                    selectCartCmd.Parameters.AddWithValue("@clother_id", id);
+
+                    using (var cartReader = selectCartCmd.ExecuteReader())
+                    {
+                        if (cartReader.Read())
+                        {
+                            cartReader.Close();
+
+                            using (var updateCmd = conn.CreateCommand())
+                            {
+                                updateCmd.CommandText = sqlUpdate;
+                                updateCmd.Parameters.AddWithValue("@clother_id", id);
+                                updateCmd.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            cartReader.Close();
+
+                            using (var selectClotherCmd = conn.CreateCommand())
+                            {
+                                selectClotherCmd.CommandText = sqlSelectClother;
+                                selectClotherCmd.Parameters.AddWithValue("@id", id);
+
+                                using (var reader = selectClotherCmd.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        string name = reader.GetString("name");
+                                        double price = reader.GetDouble("price");
+                                        string image = reader.GetString("image");
+                                        int clother_id = id;
+                                        reader.Close();
+
+                                        using (var insertCmd = conn.CreateCommand())
+                                        {
+                                            insertCmd.CommandText = sqlInsert;
+                                            insertCmd.Parameters.AddWithValue("@name", name);
+                                            insertCmd.Parameters.AddWithValue("@image", image);
+                                            insertCmd.Parameters.AddWithValue("@price", price);
+                                            insertCmd.Parameters.AddWithValue("@clother_id", clother_id);
+
+                                            insertCmd.ExecuteNonQuery();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                conn.Close();
+                navigationManager.NavigateTo("cart");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+}

@@ -1,0 +1,88 @@
+﻿@using FashionStore.Data
+@using MySql.Data.MySqlClient
+@inject NavigationManager navigationManager
+@page "/brand/edit/{id:int}"
+
+<PageTitle>Brand List</PageTitle>
+<h3>Edit Brand @id</h3>
+
+<EditForm Model="brand" OnValidSubmit="HandleEditBrand">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label class="form-label">Brand Name</label>
+        <InputText @bind-Value=brand.Name class="form-control" />
+        <ValidationMessage For="() => brand.Name" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        <InputSelect @bind-Value=brand.IsDeleted class="form-control">
+            <option value="0">Active</option>
+            <option value="1">Deleted</option>
+        </InputSelect>
+    </div>
+    <div class="mb-3">
+        <Button Type="ButtonType.Submit" Color="ButtonColor.Success">Save</Button>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+    private Brand brand = new Brand();
+
+    protected override void OnParametersSet()
+    {
+        brand = GetBrandById();
+    }
+
+    public Brand GetBrandById()
+    {
+        Brand brand = new Brand();
+        try
+        {
+            string sqlSelect = $"SELECT * FROM brand WHERE brand_id = {id}";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlSelect;
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                brand.Id = reader.GetInt32("brand_id");
+                brand.Name = reader.GetString("brand_name");
+                brand.IsDeleted = reader.GetInt32("is_deleted");
+            }
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        return brand;
+    }
+
+    private void HandleEditBrand()
+    {
+        string name = brand.Name;
+        int status = brand.IsDeleted;
+
+        try
+        {
+            string sqlInsert = $"UPDATE brand SET brand_name = '{name}', is_deleted = {status} WHERE brand_id = {id}";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlInsert;
+            cmd.ExecuteNonQuery();
+            navigationManager.NavigateTo("brand");
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+}
+

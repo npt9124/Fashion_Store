@@ -1,0 +1,54 @@
+﻿@using FashionStore.Data
+@using MySql.Data.MySqlClient
+@inject NavigationManager navigationManager
+@page "/brand/create"
+
+<PageTitle>Brand List</PageTitle>
+<h3>Create Brand</h3>
+
+<EditForm Model="brand" OnValidSubmit="HandleCreateBrand">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label class="form-label">Brand Name</label>
+        <InputText @bind-Value=brand.Name class="form-control" />
+        <ValidationMessage For="() => brand.Name" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        <InputSelect @bind-Value=brand.IsDeleted class="form-control">
+            <option value="0">Active</option>
+            <option value="1">Deleted</option>
+        </InputSelect>
+    </div>
+    <div class="mb-3">
+        <Button Type="ButtonType.Submit" Color="ButtonColor.Success">Save</Button>
+    </div>
+</EditForm>
+
+@code {
+    private Brand brand = new Brand();
+
+    private void HandleCreateBrand()
+    {
+        string name = brand.Name;
+        int status = brand.IsDeleted;
+
+        try
+        {
+            string sqlInsert = $"INSERT INTO brand (brand_name, is_deleted) VALUES ('{name}', '{status}')";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlInsert;
+            cmd.ExecuteNonQuery();
+            navigationManager.NavigateTo("brand");
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+}
+

@@ -1,0 +1,61 @@
+CREATE DATABASE clothes;
+
+USE clothes;
+
+CREATE TABLE brand (
+	brand_id INT PRIMARY KEY AUTO_INCREMENT,
+	brand_name VARCHAR(255),
+	is_deleted INT DEFAULT 0
+);
+
+CREATE TABLE admin (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(255),
+	phone VARCHAR(12),
+   password VARCHAR(255),
+   email VARCHAR(255),
+   is_deleted INT DEFAULT 0
+);
+
+CREATE TABLE clother (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(255),clother
+	quantity INT,
+	image VARCHAR(255),
+	price DOUBLE,
+	brand_id INT,
+	is_deleted INT default 0
+);
+
+
+CREATE TABLE cart (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	clother_name VARCHAR(255),
+	clother_image VARCHAR(255),
+	clother_id INT,
+	price DOUBLE,
+	amount INT DEFAULT 1cart,
+);
+
+CREATE TABLE orders (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	status INT DEFAULT 0,
+	total DOUBLE,
+	phone VARCHAR(12),
+	customer_name VARCHAR(255)
+);
+
+CREATE TABLE order_details (
+	clother_id INT,
+	order_id INT,
+	amount INT
+);
+
+
+
+
+
+
+
+
+

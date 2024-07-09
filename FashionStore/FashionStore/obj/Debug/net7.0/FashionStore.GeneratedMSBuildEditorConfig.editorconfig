@@ -1,0 +1,107 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = FashionStore
+build_property.RootNamespace = FashionStore
+build_property.ProjectDir = F:\Users\ADMIN\DATA_OLD_WIN\Desktop\Desktop1\C#\FashionStore\FashionStore\FashionStore\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = F:\Users\ADMIN\DATA_OLD_WIN\Desktop\Desktop1\C#\FashionStore\FashionStore\FashionStore
+build_property._RazorSourceGeneratorDebug = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/Admin/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/Admin/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/Admin/List.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/Brand/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQnJhbmRcQ3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/Brand/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQnJhbmRcRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/Brand/List.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQnJhbmRcTGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/Cart/List.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FydFxMaXN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/Clother/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xvdGhlclxDcmVhdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/Clother/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xvdGhlclxFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/Clother/List.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xvdGhlclxMaXN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/FetchData.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/Order/Detail.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJcRGV0YWlsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/Order/List.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJcTGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-qoanbmxkxu
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-cyv4t80go6
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Users/ADMIN/DATA_OLD_WIN/Desktop/Desktop1/C\#/FashionStore/FashionStore/FashionStore/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

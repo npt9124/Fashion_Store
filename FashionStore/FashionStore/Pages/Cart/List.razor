@@ -1,0 +1,192 @@
+﻿@page "/cart"
+@using FashionStore.Data
+@using MySql.Data.MySqlClient
+@inject NavigationManager navigationManager
+
+<PageTitle>Product Cart</PageTitle>
+<h3>List Cart</h3>
+
+<div class="row">
+    <div class="col-md-12">
+        <Grid TItem="Cart"
+              Class="table table-hover table-bordered table-striped"
+              DataProvider="CartDataProvider"
+              AllowFiltering="true"
+              AllowSorting="true"
+              AllowSelection="true"
+              Responsive="true">
+
+            <GridColumn TItem="Cart" HeaderText="Id" PropertyName="Id" SortKeySelector="item => item.Id">
+                @context.Id
+            </GridColumn>
+            <GridColumn TItem="Cart" HeaderText="Name" PropertyName="Name" SortKeySelector="item => item.ClotherName">
+                @context.ClotherName
+            </GridColumn>
+            <GridColumn TItem="Cart" HeaderText="Image" PropertyName="Image" SortKeySelector="item => item.ClotherImage">
+                <img src="@context.ClotherImage" width="90px">
+            </GridColumn>
+            <GridColumn TItem="Cart" HeaderText="Quantity" PropertyName="Quantity" SortKeySelector="item => item.Amount">
+                <InputNumber @bind-Value="context.Amount" Min="1" />
+            </GridColumn>
+            <GridColumn TItem="Cart" HeaderText="Price" PropertyName="Price" SortKeySelector="item => item.Price">
+                $@context.Price
+            </GridColumn>
+            <GridColumn TItem="Cart" HeaderText="Total" PropertyName="Total">
+                $@(@context.Price * @context.Amount)
+            </GridColumn>
+
+            <GridColumn TItem="Cart" HeaderText="Action">
+                <Button Type="ButtonType.Link" Color="ButtonColor.Danger" Outline="true" @onclick="() => DeleteCart(context.Id)">
+                    <Icon Name="IconName.Trash" /> Delete
+                </Button>
+            </GridColumn>
+        </Grid>
+
+
+        <EditForm Model="order" OnValidSubmit="HandleCreateOrder">
+            <DataAnnotationsValidator />
+            <div class="mb-3">
+                <label class="form-label">Customer Name</label>
+                <InputText @bind-Value=order.CustomerName class="form-control" />
+                <ValidationMessage For="() => order.CustomerName" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Customer Phone</label>
+                <InputText @bind-Value=order.Phone class="form-control" />
+                <ValidationMessage For="() => order.Phone" />
+            </div>
+            <div class="mb-3">
+                <Button Type="ButtonType.Submit" Color="ButtonColor.Success">Save</Button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+
+    private List<Cart> carts;
+    private Cart cart = new Cart();
+    private Order order = new Order();
+
+    protected override void OnParametersSet()
+    {
+        carts = GetCart();
+    }
+
+    private async Task<GridDataProviderResult<Cart>> CartDataProvider(GridDataProviderRequest<Cart> request)
+    {
+        if (carts is null)
+            carts = GetCart();
+
+        return await Task.FromResult(request.ApplyTo(carts));
+    }
+
+    public List<Cart> GetCart()
+    {
+        List<Cart> list = new List<Cart>();
+        string sqlSelect = "SELECT * FROM cart";
+        try
+        {
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlSelect;
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Cart cart = new Cart();
+                cart.Id = reader.GetInt32("id");
+                cart.ClotherName = reader.GetString("clother_name");
+                cart.ClotherImage = reader.GetString("clother_image");
+                cart.Price = reader.GetDouble("price");
+                cart.Amount = reader.GetInt32("amount");
+                cart.ClotherId = reader.GetInt32("clother_id");
+                list.Add(cart);
+            }
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        return list;
+    }
+
+    public void DeleteCart(int id)
+    {
+        try
+        {
+            string sqlDelete = $"DELETE FROM cart WHERE id = {id}";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlDelete;
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            navigationManager.NavigateTo("cart", forceLoad: true);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    private async Task HandleCreateOrder()
+    {
+        try
+        {
+            string customerName = order.CustomerName;
+            string phone = order.Phone;
+            double total = carts.Sum(cart => cart.Price * cart.Amount);
+
+            using (MySqlConnection conn = ConnectDB.ConnectionMySql())
+            {
+                await conn.OpenAsync();
+
+                using (var transaction = await conn.BeginTransactionAsync())
+                {
+                    try
+                    {
+                        string sqlInsertOrder = "INSERT INTO orders (total, customer_name, phone) VALUES (@total, @customerName, @phone)";
+                        MySqlCommand cmdOrder = new MySqlCommand(sqlInsertOrder, conn);
+                        cmdOrder.Parameters.AddWithValue("@total", total);
+                        cmdOrder.Parameters.AddWithValue("@customerName", customerName);
+                        cmdOrder.Parameters.AddWithValue("@phone", phone);
+                        await cmdOrder.ExecuteNonQueryAsync();
+
+                        int orderId = (int)cmdOrder.LastInsertedId;
+
+                        foreach (var cartItem in carts)
+                        {
+                            string sqlInsertOrderDetail = "INSERT INTO order_details (order_id, clother_id, amount) VALUES (@orderId, @clotherId, @quantity)";
+                            MySqlCommand cmdOrderDetail = new MySqlCommand(sqlInsertOrderDetail, conn);
+                            cmdOrderDetail.Parameters.AddWithValue("@orderId", orderId);
+                            cmdOrderDetail.Parameters.AddWithValue("@clotherId", cartItem.ClotherId);
+                            cmdOrderDetail.Parameters.AddWithValue("@quantity", cartItem.Amount);
+                            await cmdOrderDetail.ExecuteNonQueryAsync();
+                        }
+
+                        string truncateCart = "TRUNCATE TABLE cart";
+                        MySqlCommand cmdTruncate = new MySqlCommand(truncateCart, conn);
+                        await cmdTruncate.ExecuteNonQueryAsync();
+
+                        await transaction.CommitAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        await transaction.RollbackAsync();
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+                conn.Close();
+                navigationManager.NavigateTo("order");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+}

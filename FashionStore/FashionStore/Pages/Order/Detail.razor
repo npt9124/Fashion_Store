@@ -1,0 +1,86 @@
+﻿@using FashionStore.Data
+@using MySql.Data.MySqlClient
+@inject NavigationManager navigationManager
+@page "/order/detail/{id:int}"
+
+<PageTitle>Order List</PageTitle>
+<h3>Order Table</h3>
+
+<div class="row">
+    <div class="mb-3 col-md-12">
+        <Button Type="ButtonType.Link" Color="ButtonColor.Primary" Outline="true" To="/order" Class="float-end"><Icon Name="IconName.RewindFill" /> Back </Button>
+    </div>
+
+    <div class="col-md-12">
+        <Grid TItem="Order"
+              Class="table table-hover table-bordered table-striped"
+              DataProvider="OrderDataProvider"
+              AllowFiltering="true"
+              AllowPaging="true"
+              PageSize="5"
+              AllowSorting="true"
+              AllowSelection="true"
+              Responsive="true">
+            <GridColumn TItem="Order" HeaderText="Product Name" PropertyName="Product Name" SortKeySelector="item => item.ClotherName">
+                @context.ClotherName
+            </GridColumn>
+            <GridColumn TItem="Order" HeaderText="Product Image" PropertyName="Product Image" SortKeySelector="item => item.ClotherImage">
+                <img src="@context.ClotherImage" alt="" style="width: 60px" />
+            </GridColumn>
+            <GridColumn TItem="Order" HeaderText="Price" PropertyName="Price" SortKeySelector="item => item.Price">
+                @context.Price
+            </GridColumn>
+            <GridColumn TItem="Order" HeaderText="Amount" PropertyName="Amount" SortKeySelector="item => item.Amount">
+                @context.Amount
+            </GridColumn>
+        </Grid>
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+    private List<Order> orders;
+    private async Task<GridDataProviderResult<Order>> OrderDataProvider(GridDataProviderRequest<Order> request)
+    {
+        if (orders is null)
+            orders = GetOrder();
+
+        return await Task.FromResult(request.ApplyTo(orders));
+    }
+
+    private List<Order> GetOrder()
+    {
+        List<Order> list = new List<Order>();
+        try
+        {
+            string sqlSelect = $@"SELECT clother.name, clother.image, clother.price, order_details.amount
+                                    FROM clother JOIN order_details
+                                    ON clother.id = order_details.clother_id
+                                    JOIN orders
+                                    ON orders.id = order_details.order_id
+                                    WHERE orders.id = {id}";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlSelect;
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Order order = new Order();
+                order.ClotherName = reader.GetString("name");
+                order.ClotherImage = reader.GetString("image");
+                order.Amount = reader.GetInt32("amount");
+                order.Price = reader.GetDouble("price");
+                list.Add(order);
+            }
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        return list;
+    }
+}

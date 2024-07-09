@@ -1,0 +1,69 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\New folder\\FashionStore\\FashionStore\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\FashionStore.bundle.scp.css",
+      "PackagePath": "staticwebassets\\FashionStore.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\New folder\\FashionStore\\FashionStore\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\New folder\\FashionStore\\FashionStore\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "C:\\New folder\\FashionStore\\FashionStore\\wwwroot\\productImage\\87d42a8048e2e185d8b5119eb6199d31.jpg",
+      "PackagePath": "staticwebassets\\productImage\\87d42a8048e2e185d8b5119eb6199d31.jpg"
+    },
+    {
+      "Id": "C:\\New folder\\FashionStore\\FashionStore\\wwwroot\\productImage\\ad3a6fdd40de1e126510ef597950f3ac.jpg",
+      "PackagePath": "staticwebassets\\productImage\\ad3a6fdd40de1e126510ef597950f3ac.jpg"
+    },
+    {
+      "Id": "C:\\New folder\\FashionStore\\FashionStore\\wwwroot\\productImage\\aochoang_guccci.jpg",
+      "PackagePath": "staticwebassets\\productImage\\aochoang_guccci.jpg"
+    },
+    {
+      "Id": "C:\\New folder\\FashionStore\\FashionStore\\wwwroot\\productImage\\chanel_enie.jpg",
+      "PackagePath": "staticwebassets\\productImage\\chanel_enie.jpg"
+    },
+    {
+      "Id": "C:\\New folder\\FashionStore\\FashionStore\\wwwroot\\productImage\\j12.png",
+      "PackagePath": "staticwebassets\\productImage\\j12.png"
+    },
+    {
+      "Id": "C:\\New folder\\FashionStore\\FashionStore\\wwwroot\\productImage\\jackt zara.jpg",
+      "PackagePath": "staticwebassets\\productImage\\jackt zara.jpg"
+    },
+    {
+      "Id": "C:\\New folder\\FashionStore\\FashionStore\\wwwroot\\productImage\\levi1.jpg",
+      "PackagePath": "staticwebassets\\productImage\\levi1.jpg"
+    },
+    {
+      "Id": "C:\\New folder\\FashionStore\\FashionStore\\wwwroot\\productImage\\s11.png",
+      "PackagePath": "staticwebassets\\productImage\\s11.png"
+    },
+    {
+      "Id": "C:\\New folder\\FashionStore\\FashionStore\\wwwroot\\productImage\\s13.png",
+      "PackagePath": "staticwebassets\\productImage\\s13.png"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.FashionStore.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.FashionStore.props",
+      "PackagePath": "build\\FashionStore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.FashionStore.props",
+      "PackagePath": "buildMultiTargeting\\FashionStore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.FashionStore.props",
+      "PackagePath": "buildTransitive\\FashionStore.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

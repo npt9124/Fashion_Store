@@ -1,0 +1,108 @@
+﻿@using FashionStore.Data
+@using MySql.Data.MySqlClient
+@inject NavigationManager navigationManager
+@page "/admin/edit/{id:int}"
+
+<PageTitle>Admin List</PageTitle>
+<h3>Edit Admin @id</h3>
+
+<EditForm Model="admin" OnValidSubmit="HandleEditAdmin">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label class="form-label">Admin Name</label>
+        <InputText @bind-Value=admin.Name class="form-control" />
+        <ValidationMessage For="() => admin.Name" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Phone</label>
+        <InputText @bind-Value=admin.Phone class="form-control" />
+        <ValidationMessage For="() => admin.Phone" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <InputText @bind-Value=admin.Email class="form-control" />
+        <ValidationMessage For="() => admin.Email" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <InputText @bind-Value=admin.Password class="form-control" />
+        <ValidationMessage For="() => admin.Password" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        <InputSelect @bind-Value=admin.IsDeleted class="form-control">
+            <option value="0">Active</option>
+            <option value="1">Deleted</option>
+        </InputSelect>
+    </div>
+    <div class="mb-3">
+        <Button Type="ButtonType.Submit" Color="ButtonColor.Success">Save</Button>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+    private Admin admin = new Admin();
+
+    protected override void OnParametersSet()
+    {
+        admin = GetAdminByAdmin();
+    }
+
+    private Admin GetAdminByAdmin()
+    {
+        Admin admin = new Admin();
+        try
+        {
+            string sqlSelect = $"SELECT * FROM admin WHERE id = {id}";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlSelect;
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                admin.Id = reader.GetInt32("id");
+                admin.Name = reader.GetString("name");
+                admin.Phone = reader.GetString("phone");
+                admin.Email = reader.GetString("email");
+                admin.IsDeleted = reader.GetInt32("is_deleted");
+            }
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        return admin;
+    }
+
+    private void HandleEditAdmin()
+    {
+        string name = admin.Name;
+        string email = admin.Email;
+        string phone = admin.Phone;
+        string pass = admin.Password;
+        int status = admin.IsDeleted;
+
+        try
+        {
+            string sqlUpdate = $"UPDATE admin SET name = '{name}', email = '{email}', phone = '{phone}', password = '{pass}', is_deleted = '{status}' WHERE id = {id}";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlUpdate;
+            cmd.ExecuteNonQuery();
+            navigationManager.NavigateTo("admin");
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+}
+

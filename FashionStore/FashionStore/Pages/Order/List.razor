@@ -1,0 +1,170 @@
+﻿@using FashionStore.Data
+@using MySql.Data.MySqlClient
+@inject NavigationManager navigationManager
+@page "/order"
+
+<PageTitle>Order List</PageTitle>
+<h3>Order Table</h3>
+
+<div class="row">
+    <div class="col-md-12">
+        <Grid TItem="Order"
+              Class="table table-hover table-bordered table-striped"
+              DataProvider="OrderDataProvider"
+              AllowFiltering="true"
+              AllowPaging="true"
+              PageSize="5"
+              AllowSorting="true"
+              AllowSelection="true"
+              Responsive="true">
+
+            <GridColumn TItem="Order" HeaderText="Id" PropertyName="Id" SortKeySelector="item => item.Id">
+                @context.Id
+            </GridColumn>
+            <GridColumn TItem="Order" HeaderText="Customer Name" PropertyName="Customer Name" SortKeySelector="item => item.CustomerName">
+                @context.CustomerName
+            </GridColumn>
+            <GridColumn TItem="Order" HeaderText="Total" PropertyName="Total" SortKeySelector="item => item.Total">
+                @context.Total
+            </GridColumn>
+            <GridColumn TItem="Order" HeaderText="Status" PropertyName="Designation" SortKeySelector="item => item.Status">
+                @if (context.Status == 0)
+                {
+                    <Badge Color="BadgeColor.Warning" IndicatorType="BadgeIndicatorType.None">PENDING</Badge>
+                }
+                else if (context.Status == 1)
+                {
+                    <Badge Color="BadgeColor.Success" IndicatorType="BadgeIndicatorType.None">COMPLETED</Badge>
+                }
+                else
+                {
+                    <Badge Color="BadgeColor.Danger" IndicatorType="BadgeIndicatorType.None">CANCEL</Badge>
+                }
+            </GridColumn>
+
+            <GridColumn TItem="Order" HeaderText="Action">
+                <Button Type="ButtonType.Link" Color="ButtonColor.Danger" Outline="true" @onclick="(e) => OrderCancel(context.Id)" Disabled="(context.Status == 2 || context.Status == 1)"> Cancel </Button>
+                <Button Type="ButtonType.Link" Color="ButtonColor.Success" Outline="true" @onclick="(e) => OrderComplete(context.Id)" Disabled="(context.Status == 1 || context.Status == 2)"> Complete </Button>
+                <Button Type="ButtonType.Link" Color="ButtonColor.Info" Outline="true" To=@($"order/detail/{@context.Id}")> Detail </Button>
+            </GridColumn>
+        </Grid>
+    </div>
+</div>
+
+
+
+
+@code {
+    private List<Order> orders;
+    private async Task<GridDataProviderResult<Order>> OrderDataProvider(GridDataProviderRequest<Order> request)
+    {
+        if (orders is null)
+            orders = GetOrder();
+
+        return await Task.FromResult(request.ApplyTo(orders));
+    }
+
+    private List<Order> GetOrder()
+    {
+        List<Order> list = new List<Order>();
+        try
+        {
+            string sqlSelect = "SELECT * FROM orders ORDER BY id DESC";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlSelect;
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Order order = new Order();
+                order.Id = reader.GetInt32("id");
+                order.CustomerName = reader.GetString("customer_name");
+                order.Status = reader.GetInt32("status");
+                order.Total = reader.GetDouble("total");
+                list.Add(order);
+            }
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        return list;
+    }
+
+    private void OrderCancel(int id)
+    {
+        try
+        {
+            string sqlUpdate = $"UPDATE orders SET status = 2 WHERE id = {id}";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlUpdate;
+            cmd.ExecuteNonQuery();
+            navigationManager.NavigateTo("order", forceLoad: true);
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    private void OrderComplete(int id)
+    {
+        try
+        {
+            using (MySqlConnection conn = ConnectDB.ConnectionMySql())
+            {
+                conn.Open();
+
+
+                string sqlUpdateOrder = "UPDATE orders SET status = 1 WHERE id = @OrderId";
+                using (MySqlCommand cmdUpdateOrder = new MySqlCommand(sqlUpdateOrder, conn))
+                {
+                    cmdUpdateOrder.Parameters.AddWithValue("@OrderId", id);
+                    cmdUpdateOrder.ExecuteNonQuery();
+                }
+
+
+                string sqlSelectDetails = "SELECT clother_id, amount FROM order_details WHERE order_id = @OrderId";
+                List<(int ClotherId, int Amount)> orderDetails = new List<(int, int)>();
+                using (MySqlCommand cmdSelectDetails = new MySqlCommand(sqlSelectDetails, conn))
+                {
+                    cmdSelectDetails.Parameters.AddWithValue("@OrderId", id);
+                    using (MySqlDataReader reader = cmdSelectDetails.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int clotherId = reader.GetInt32("clother_id");
+                            int amount = reader.GetInt32("amount");
+                            orderDetails.Add((clotherId, amount));
+                        }
+                    }
+                }
+
+                // Update clother quantity
+                foreach (var detail in orderDetails)
+                {
+                    string sqlUpdateProduct = "UPDATE clother SET quantity = quantity - @Amount WHERE id = @ClotherId";
+                    using (MySqlCommand cmdUpdateProduct = new MySqlCommand(sqlUpdateProduct, conn))
+                    {
+                        cmdUpdateProduct.Parameters.AddWithValue("@Amount", detail.Amount);
+                        cmdUpdateProduct.Parameters.AddWithValue("@ClotherId", detail.ClotherId);
+                        cmdUpdateProduct.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
+        navigationManager.NavigateTo("order", forceLoad: true);
+    }
+}

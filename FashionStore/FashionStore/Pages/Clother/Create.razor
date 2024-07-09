@@ -1,0 +1,150 @@
+﻿@page "/clother/create"
+@using FashionStore.Data
+@using MySql.Data.MySqlClient
+@inject NavigationManager navigationManager
+
+
+<PageTitle>Create Clother</PageTitle>
+<h3>Create Clother</h3>
+
+<EditForm Model="clother" OnValidSubmit="HandleCreateClother">
+    <DataAnnotationsValidator />
+    <div classs="row">
+        <div Width="PlaceholderWidth.Col6">
+            <div class="mb-3 ">
+                <label class="form-label">Clother Name</label>
+                <InputText @bind-Value=clother.Name class="form-control" />
+                <ValidationMessage For="() => clother.Name" />
+            </div>
+            <div class="mb-3 ">
+                <label class="form-label">Quantity</label>
+                <InputNumber @bind-Value=clother.Quantity class="form-control" />
+                <ValidationMessage For="() => clother.Quantity" />
+            </div>
+            <div class="mb-3 ">
+                <label class="form-label">Price</label>
+                <InputNumber @bind-Value=clother.Price class="form-control" />
+                <ValidationMessage For="() => clother.Price" />
+            </div>
+        </div>
+
+        <div Width="PlaceholderWidth.Col6">
+            <div class="mb-3">
+                <label class="form-label">Brand</label>
+                <InputSelect @bind-Value=clother.BrandId class="form-control">
+                    @foreach (var brand in brands)
+                    {
+                        <option value="@brand.Id">@brand.Name</option>
+                    }
+                </InputSelect>
+            </div>
+
+            <div class="mb-3 ">
+                <label class="form-label">Product Image</label>
+                <InputFile class="form-control" OnChange="HandleSelectedFile"></InputFile>
+                @if (avatarUrl != null)
+                {
+                    <img src="@avatarUrl" style="max-width: 200px" />
+                }
+            </div>
+        </div>
+        <Button Type="ButtonType.Submit" Color="ButtonColor.Success">Save</Button>
+
+    </div>
+</EditForm>
+
+@code {
+    private Clother clother = new Clother();
+    private IBrowserFile selectedFile;
+    private string avatarUrl = "";
+    private List<Brand> brands;
+
+    protected override void OnInitialized()
+    {
+        brands = GetBrands();
+    }
+
+    // lay list category cho product
+    private List<Brand> GetBrands()
+    {
+        List<Brand> list = new List<Brand>();
+        string sqlSelect = "SELECT * FROM brand";
+        try
+        {
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlSelect;
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Brand brand = new Brand();
+                brand.Id = reader.GetInt32("brand_id");
+                brand.Name = reader.GetString("brand_name");
+                list.Add(brand);
+            }
+
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        return list;
+    }
+
+
+    // them moi clother
+    private async void HandleCreateClother()
+    {
+        try
+        {
+            if (selectedFile != null)
+            {
+                await UploadSelectedFile(selectedFile);
+            }
+            string name = clother.Name;
+            int quantity = clother.Quantity;
+            double price = clother.Price;
+            string image = clother.Image;
+            int brand = clother.BrandId;
+
+
+            string sqlInsert = $"INSERT INTO clother (name, quantity, price, image, brand_id) VALUES ('{name}', '{quantity}', '{price}', '{image}', '{brand}')";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlInsert;
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            navigationManager.NavigateTo("clother");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    private async Task HandleSelectedFile(InputFileChangeEventArgs e)
+    {
+        selectedFile = e.File;
+        var resizeFile = await e.File.RequestImageFileAsync("image/jpeg", 500, 500);
+        var buffer = new byte[resizeFile.Size];
+        await resizeFile.OpenReadStream().ReadAsync(buffer);
+        avatarUrl = $"data:image/jpeg;base64, {Convert.ToBase64String(buffer)}";
+    }
+
+    private async Task UploadSelectedFile(IBrowserFile file)
+    {
+        string fileName = file.Name;
+        var folderPath = Path.Combine("wwwroot", "productImage"); //wwwroot/uploads
+        var filePath = Path.Combine(folderPath, fileName);
+        Directory.CreateDirectory(folderPath);
+        using (var fileStream = new FileStream(filePath, FileMode.Create))
+        {
+            await file.OpenReadStream().CopyToAsync(fileStream);
+        }
+        clother.Image = $"productImage/{fileName}";
+    }
+}

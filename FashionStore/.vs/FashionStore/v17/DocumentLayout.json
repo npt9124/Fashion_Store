@@ -1,0 +1,323 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\New folder\\FashionStore\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\data\\weatherforecastservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\data\\weatherforecastservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\data\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\data\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\data\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\data\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\data\\connectdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\data\\connectdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\data\\clother.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\data\\clother.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\data\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\data\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\data\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\data\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\data\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\data\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\pages\\clother\\create.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\pages\\clother\\create.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\pages\\order\\detail.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\pages\\order\\detail.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\pages\\order\\list.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\pages\\order\\list.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\pages\\brand\\list.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\pages\\brand\\list.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\pages\\clother\\edit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\pages\\clother\\edit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\pages\\clother\\list.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\pages\\clother\\list.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\pages\\brand\\create.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\pages\\brand\\create.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\pages\\brand\\edit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\pages\\brand\\edit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\shared\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\shared\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|c:\\new folder\\fashionstore\\fashionstore\\shared\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5EE2079F-493E-424E-881B-D372AE76782B}|FashionStore\\FashionStore.csproj|solutionrelative:fashionstore\\shared\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WeatherForecastService.cs",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Data\\WeatherForecastService.cs",
+              "RelativeDocumentMoniker": "FashionStore\\Data\\WeatherForecastService.cs",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Data\\WeatherForecastService.cs",
+              "RelativeToolTip": "FashionStore\\Data\\WeatherForecastService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-24T07:58:40.157Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Data\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "FashionStore\\Data\\WeatherForecast.cs",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Data\\WeatherForecast.cs",
+              "RelativeToolTip": "FashionStore\\Data\\WeatherForecast.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-24T07:58:39.914Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Cart.cs",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Data\\Cart.cs",
+              "RelativeDocumentMoniker": "FashionStore\\Data\\Cart.cs",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Data\\Cart.cs",
+              "RelativeToolTip": "FashionStore\\Data\\Cart.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-24T07:58:39.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Admin.cs",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Data\\Admin.cs",
+              "RelativeDocumentMoniker": "FashionStore\\Data\\Admin.cs",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Data\\Admin.cs",
+              "RelativeToolTip": "FashionStore\\Data\\Admin.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-24T07:58:39.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Create.razor",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Brand\\Create.razor",
+              "RelativeDocumentMoniker": "FashionStore\\Pages\\Brand\\Create.razor",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Brand\\Create.razor",
+              "RelativeToolTip": "FashionStore\\Pages\\Brand\\Create.razor",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAACsAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-23T18:47:57.028Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Create.razor",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Clother\\Create.razor",
+              "RelativeDocumentMoniker": "FashionStore\\Pages\\Clother\\Create.razor",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Clother\\Create.razor",
+              "RelativeToolTip": "FashionStore\\Pages\\Clother\\Create.razor",
+              "ViewState": "AQIAAGwAAAAAAAAAAAAAAHYAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-23T18:37:44.49Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Brand.cs",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Data\\Brand.cs",
+              "RelativeDocumentMoniker": "FashionStore\\Data\\Brand.cs",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Data\\Brand.cs",
+              "RelativeToolTip": "FashionStore\\Data\\Brand.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-23T19:40:01.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "List.razor",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Brand\\List.razor",
+              "RelativeDocumentMoniker": "FashionStore\\Pages\\Brand\\List.razor",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Brand\\List.razor",
+              "RelativeToolTip": "FashionStore\\Pages\\Brand\\List.razor",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-23T15:00:43.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "List.razor",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Clother\\List.razor",
+              "RelativeDocumentMoniker": "FashionStore\\Pages\\Clother\\List.razor",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Clother\\List.razor",
+              "RelativeToolTip": "FashionStore\\Pages\\Clother\\List.razor",
+              "ViewState": "AQIAAMYAAAAAAAAAAAAAABgAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-23T18:44:17.827Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Edit.razor",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Clother\\Edit.razor",
+              "RelativeDocumentMoniker": "FashionStore\\Pages\\Clother\\Edit.razor",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Clother\\Edit.razor",
+              "RelativeToolTip": "FashionStore\\Pages\\Clother\\Edit.razor",
+              "ViewState": "AQIAAKYAAAAAAAAAAAAmwLsAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-23T18:42:01.602Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Clother.cs",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Data\\Clother.cs",
+              "RelativeDocumentMoniker": "FashionStore\\Data\\Clother.cs",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Data\\Clother.cs",
+              "RelativeToolTip": "FashionStore\\Data\\Clother.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-23T18:37:32.291Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ConnectDB.cs",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Data\\ConnectDB.cs",
+              "RelativeDocumentMoniker": "FashionStore\\Data\\ConnectDB.cs",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Data\\ConnectDB.cs",
+              "RelativeToolTip": "FashionStore\\Data\\ConnectDB.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-23T16:29:02.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Data\\Order.cs",
+              "RelativeDocumentMoniker": "FashionStore\\Data\\Order.cs",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Data\\Order.cs",
+              "RelativeToolTip": "FashionStore\\Data\\Order.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-23T15:12:37.674Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Detail.razor",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Order\\Detail.razor",
+              "RelativeDocumentMoniker": "FashionStore\\Pages\\Order\\Detail.razor",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Order\\Detail.razor",
+              "RelativeToolTip": "FashionStore\\Pages\\Order\\Detail.razor",
+              "ViewState": "AQIAADMAAAAAAAAAAAAAADoAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-23T15:05:52.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "List.razor",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Order\\List.razor",
+              "RelativeDocumentMoniker": "FashionStore\\Pages\\Order\\List.razor",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Order\\List.razor",
+              "RelativeToolTip": "FashionStore\\Pages\\Order\\List.razor",
+              "ViewState": "AQIAAIcAAAAAAAAAAAAmwKoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-23T14:48:37.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Edit.razor",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Brand\\Edit.razor",
+              "RelativeDocumentMoniker": "FashionStore\\Pages\\Brand\\Edit.razor",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Pages\\Brand\\Edit.razor",
+              "RelativeToolTip": "FashionStore\\Pages\\Brand\\Edit.razor",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAAABkAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-23T19:03:08.335Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Shared\\NavMenu.razor",
+              "RelativeDocumentMoniker": "FashionStore\\Shared\\NavMenu.razor",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Shared\\NavMenu.razor",
+              "RelativeToolTip": "FashionStore\\Shared\\NavMenu.razor",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACoAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-23T15:03:49.996Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\New folder\\FashionStore\\FashionStore\\Shared\\MainLayout.razor",
+              "RelativeDocumentMoniker": "FashionStore\\Shared\\MainLayout.razor",
+              "ToolTip": "C:\\New folder\\FashionStore\\FashionStore\\Shared\\MainLayout.razor",
+              "RelativeToolTip": "FashionStore\\Shared\\MainLayout.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-23T15:03:44.524Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

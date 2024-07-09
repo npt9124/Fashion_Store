@@ -1,0 +1,72 @@
+﻿@using FashionStore.Data
+@using MySql.Data.MySqlClient
+@inject NavigationManager navigationManager
+@page "/admin/create"
+
+<PageTitle>Admin List</PageTitle>
+<h3>Create Admin</h3>
+
+<EditForm Model="admin" OnValidSubmit="HandleCreateAdmin">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label class="form-label">Admin Name</label>
+        <InputText @bind-Value=admin.Name class="form-control" />
+        <ValidationMessage For="() => admin.Name" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Phone</label>
+        <InputText @bind-Value=admin.Phone class="form-control" />
+        <ValidationMessage For="() => admin.Phone" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <InputText @bind-Value=admin.Email class="form-control" />
+        <ValidationMessage For="() => admin.Email" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <InputText @bind-Value=admin.Password class="form-control" />
+        <ValidationMessage For="() => admin.Password" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        <InputSelect @bind-Value=admin.IsDeleted class="form-control">
+            <option value="0">Active</option>
+            <option value="1">Deleted</option>
+        </InputSelect>
+    </div>
+    <div class="mb-3">
+        <Button Type="ButtonType.Submit" Color="ButtonColor.Success">Save</Button>
+    </div>
+</EditForm>
+
+@code {
+    private Admin admin = new Admin();
+
+    private void HandleCreateAdmin()
+    {
+        string name = admin.Name;
+        string email = admin.Email;
+        string phone = admin.Phone;
+        string pass = admin.Password;
+        int status = admin.IsDeleted;
+
+        try
+        {
+            string sqlInsert = $"INSERT INTO admin (name, email, phone, password, is_deleted) VALUES ('{name}', '{email}', '{phone}', '{pass}', '{status}')";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlInsert;
+            cmd.ExecuteNonQuery();
+            navigationManager.NavigateTo("admin");
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+}
+

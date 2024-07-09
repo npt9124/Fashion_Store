@@ -1,0 +1,111 @@
+﻿@using FashionStore.Data
+@using MySql.Data.MySqlClient
+@inject NavigationManager navigationManager
+@page "/admin"
+
+<PageTitle>Admin List</PageTitle>
+<h3>Admin Table</h3>
+
+<Button Type="ButtonType.Link" Color="ButtonColor.Warning" Outline="true" To="admin/create" Class="mb-3"> ADD </Button>
+
+<Grid TItem="Admin"
+      Class="table table-hover table-bordered table-striped"
+      DataProvider="AdminDataProvider"
+      AllowFiltering="true"
+      AllowPaging="true"
+      PageSize="5"
+      AllowSorting="true"
+      AllowSelection="true"
+      Responsive="true">
+
+    <GridColumn TItem="Admin" HeaderText="Id" PropertyName="Id" SortKeySelector="item => item.Id">
+        @context.Id
+    </GridColumn>
+    <GridColumn TItem="Admin" HeaderText="Name" PropertyName="Name" SortKeySelector="item => item.Name">
+        @context.Name
+    </GridColumn>
+    <GridColumn TItem="Admin" HeaderText="Phone" PropertyName="Phone" SortKeySelector="item => item.Phone">
+        @context.Phone
+    </GridColumn>
+    <GridColumn TItem="Admin" HeaderText="Email" PropertyName="Email" SortKeySelector="item => item.Email">
+        @context.Email
+    </GridColumn>
+    <GridColumn TItem="Admin" HeaderText="Status" PropertyName="Status" SortKeySelector="item => item.IsDeleted">
+        @if (context.IsDeleted == 1)
+        {
+            <Badge Color="BadgeColor.Danger" IndicatorType="BadgeIndicatorType.None">Deleted</Badge>
+        }
+        else
+        {
+            <Badge Color="BadgeColor.Success" IndicatorType="BadgeIndicatorType.None">Active</Badge>
+        }
+    </GridColumn>
+    <GridColumn TItem="Admin" HeaderText="Action">
+        <Button Type="ButtonType.Link" Color="ButtonColor.Info" Outline="true" To=@($"admin/edit/{@context.Id}")> Edit </Button>
+        <Button Type="ButtonType.Link" Color="ButtonColor.Danger" Outline="true" @onclick="(e) => DeleteAdmin(context.Id)" Disabled="context.IsDeleted == 1"> Delete </Button>
+    </GridColumn>
+
+</Grid>
+
+@code {
+    private List<Admin> admins;
+    private async Task<GridDataProviderResult<Admin>> AdminDataProvider(GridDataProviderRequest<Admin> request)
+    {
+        if (admins is null)
+            admins = GetAdmin();
+
+        return await Task.FromResult(request.ApplyTo(admins));
+    }
+
+    private List<Admin> GetAdmin()
+    {
+        List<Admin> list = new List<Admin>();
+        try
+        {
+            string sqlSelect = "SELECT * FROM admin ORDER BY id DESC";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlSelect;
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Admin admin = new Admin();
+                admin.Id = reader.GetInt32("id");
+                admin.Name = reader.GetString("name");
+                admin.Phone = reader.GetString("phone");
+                admin.Email = reader.GetString("email");
+                admin.Password = reader.GetString("password");
+                admin.IsDeleted = reader.GetInt32("is_deleted");
+                list.Add(admin);
+            }
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        return list;
+    }
+
+    private void DeleteAdmin(int id)
+    {
+        try
+        {
+            string sqlDelete = $"UPDATE admin SET is_deleted = 1 WHERE id = {id}";
+            MySqlConnection conn = ConnectDB.ConnectionMySql();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sqlDelete;
+            cmd.ExecuteNonQuery();
+            navigationManager.NavigateTo("admin", forceLoad: true);
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+}
